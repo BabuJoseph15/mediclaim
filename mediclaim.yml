@@ -1,0 +1,13 @@
+---
+- hosts: webservers 
+  become: True
+  tasks:
+    - name: Download an artifact from a private repository requiring authentication
+      community.general.maven_artifact:
+        group_id: com.company
+        artifact_id: library-name
+        repository_url: 'https://repo.company.com/maven'
+        username: user
+        password: pass
+        dest: /tmp/library-name-latest.jar 
+...
