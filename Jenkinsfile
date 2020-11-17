@@ -9,7 +9,7 @@ pipeline {
 	stage('Build') {
 		steps {
 			withSonarQubeEnv('sonar7') {
-				sh '/opt/maven/bin/mvn clean verify sonar:sonar -Dmaven.test.skip=true'
+				sh '/opt/maven3/bin/mvn clean verify sonar:sonar -Dmaven.test.skip=true'
 			}
 		}
 	}
@@ -22,7 +22,7 @@ pipeline {
           }
 	stage ('Deploy') {
 		steps {
-			sh '/opt/maven/bin/mvn clean deploy -Dmaven.test.skip=true'
+			sh '/opt/maven3/bin/mvn clean deploy -Dmaven.test.skip=true'
 		}
 	}
 	stage ('Release') {
@@ -32,7 +32,7 @@ pipeline {
 	}
 	stage ('DB Migration') {
 		steps {
-			sh '/opt/maven/bin/mvn clean flyway:migrate'
+			sh '/opt/maven3/bin/mvn clean flyway:migrate'
 		}
 	}
 }
